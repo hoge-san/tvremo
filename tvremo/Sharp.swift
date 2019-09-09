@@ -35,7 +35,7 @@ class SharpTV: TV {
     func initTCPconnection(message: String) {
         guard let ipAddress = self.ipAddress else { return }
         let host = NWEndpoint.Host(ipAddress)
-        let port = NWEndpoint.Port(integerLiteral: 80)
+        let port = NWEndpoint.Port(integerLiteral: 10002)
 
         self.connection = NWConnection(host: host, port: port, using: .tcp)
         /// コネクションのステータス監視のハンドラを設定
