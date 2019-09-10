@@ -71,8 +71,6 @@ class SharpTV: TV {
                 NSLog("\(#function), \(error)")
             } else {
                 print("non error")
-                print(String(data: data, encoding: .utf8)!)
-                sleep(1)
                 // let message = message(text: text, isReceived: false)
                 //self.messages.acceptAppending(message)
             }
