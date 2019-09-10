@@ -71,6 +71,9 @@ class SharpTV: TV {
                 NSLog("\(#function), \(error)")
             } else {
                 print("non error")
+                if self.connection != nil {
+                    self.connection?.cancel()
+                }
                 // let message = message(text: text, isReceived: false)
                 //self.messages.acceptAppending(message)
             }
