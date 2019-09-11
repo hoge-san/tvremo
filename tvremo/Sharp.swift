@@ -91,7 +91,7 @@ class SharpTV: TV {
             if let error = error {
                 NSLog("\(#function), \(error)")
             } else {
-                print("send message. " + message)
+                print("send message. " + text)
             }
         })
     }
