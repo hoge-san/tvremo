@@ -77,9 +77,7 @@ class SharpTV: TV {
         /// コネクションの開始
         let queue = DispatchQueue(label: "label")
         self.connection?.start(queue: queue)
-        if recvfunc != nil {
-            self.receive(recvfunc: recvfunc!)
-        }
+        self.receive(recvfunc: recvfunc)
     }
 
     func send(text: String) {
