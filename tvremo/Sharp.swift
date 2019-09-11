@@ -17,22 +17,41 @@ class SharpTV: TV {
         self.password = password
     }
 
-    override func power()         { self.sharpTVCtl(message: "POWR0   ") } // 電源
-    override func volUp()         { self.sharpTVCtl(message: "        ") } // 音量アップ
-    override func volDown()       { self.sharpTVCtl(message: "        ") } // 音量ダウン
-    override func mute()          { self.sharpTVCtl(message: "MUTE0   ") } // 消音
-    override func channelUp()     { self.sharpTVCtl(message: "CHUP-   ") } // チャンネルアップ
-    override func channelDown()   { self.sharpTVCtl(message: "CHDW-   ") } // チャンネルダウン
-    override func recordingList() { self.sharpTVCtl(message: "        ") } // 録画リスト
-    override func guide()         { self.sharpTVCtl(message: "        ") } // 番組ガイド
+    override func power()         { self.sharpTVCtl(message: "POWR0   ", recvfunc: nil) } // 電源OFF
+    override func volUp()         { self.sharpTVCtl(message: "VOLM????", recvfunc: recvfuncVolUp) } // 音量アップ
+    override func volDown()       { self.sharpTVCtl(message: "VOLM????", recvfunc: recvfuncVolDown) } // 音量ダウン
+    override func mute()          { self.sharpTVCtl(message: "MUTE0   ", recvfunc: nil) } // 消音
+    override func channelUp()     { self.sharpTVCtl(message: "CHUP-   ", recvfunc: nil) } // チャンネルアップ
+    override func channelDown()   { self.sharpTVCtl(message: "CHDW-   ", recvfunc: nil) } // チャンネルダウン
+    override func recordingList() { self.sharpTVCtl(message: "        ", recvfunc: nil) } // 録画リスト
+    override func guide()         { self.sharpTVCtl(message: "        ", recvfunc: nil) } // 番組ガイド
 
     var connection: NWConnection?
 
-    func sharpTVCtl(message: String){
-        print("ctl: " + message)
-        self.initTCPconnection(message: message)
+
+    func recvfuncVolUp(volume: String) {
+        guard let currentVol = Int(volume) else { return }
+        print("current Volume: " + String(currentVol))
+        var message = "VOLM" + String(currentVol + 1)
+        for _ in message.count ..< 8 {
+            message += " "
+        }
+        print("message: " + message)
+        self.sharpTVCtl(message: message, recvfunc: nil)
     }
-    func initTCPconnection(message: String) {
+
+    func recvfuncVolDown(volume: String) {
+        guard let currentVol = Int(volume) else { return }
+        print("current Volume: " + String(currentVol))
+        var message = "VOLM" + String(currentVol - 1)
+        for _ in message.count ..< 8 {
+            message += " "
+        }
+        print("message: " + message)
+        self.sharpTVCtl(message: message, recvfunc: nil)
+    }
+
+    func sharpTVCtl(message: String, recvfunc: ((String) -> Void )?) {
         guard let ipAddress = self.ipAddress else { return }
         let host = NWEndpoint.Host(ipAddress)
         let port = NWEndpoint.Port(integerLiteral: 10002)
@@ -51,12 +70,16 @@ class SharpTV: TV {
             case .setup: break
             case .cancelled: break
             case .preparing: break
+            @unknown default: break
             }
         }
 
         /// コネクションの開始
         let queue = DispatchQueue(label: "label")
         self.connection?.start(queue: queue)
+        if recvfunc != nil {
+            self.receive(recvfunc: recvfunc!)
+        }
     }
 
     func send(text: String) {
@@ -66,17 +89,30 @@ class SharpTV: TV {
         let data = message.data(using: .utf8)!
 
         /// メッセージの送信
-        connection?.send(content: data, completion: .contentProcessed { [unowned self] (error) in
+        connection?.send(content: data, completion: .contentProcessed { (error) in
             if let error = error {
                 NSLog("\(#function), \(error)")
             } else {
-                print("non error")
-                if self.connection != nil {
-                    self.connection?.cancel()
-                }
-                // let message = message(text: text, isReceived: false)
-                //self.messages.acceptAppending(message)
+                print("send message. " + message)
             }
         })
+    }
+
+    func receive(recvfunc: @escaping (String) -> Void) {
+        /// コネクションからデータを受信
+        self.connection?.receive(minimumIncompleteLength: 0, maximumLength: Int(UInt32.max)) { [weak self] (data, _, _, error) in
+            if let data = data {
+                let text = String(data: data, encoding: .utf8)!
+                // print("Recieve:" + text)
+                recvfunc(text)
+            } else {
+                NSLog("\(#function), Received data is nil")
+            }
+            if self?.connection != nil {
+                self?.connection?.cancel()
+                self?.connection = nil
+                print("Connection Closed.")
+            }
+        }
     }
 }
