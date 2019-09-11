@@ -101,7 +101,7 @@ class SharpTV: TV {
         self.connection?.receive(minimumIncompleteLength: 0, maximumLength: Int(UInt32.max)) { [weak self] (data, _, _, error) in
             if let data = data {
                 var text = String(data: data, encoding: .utf8)!
-                // print("Recieve:" + text)
+                print("Recieve:" + text)
                 if text.hasPrefix("Login:") || text.contains("Password:") || text.hasPrefix("\r") {
                     self?.receive(recvfunc: recvfunc)
                     return
