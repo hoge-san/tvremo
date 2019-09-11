@@ -102,7 +102,7 @@ class SharpTV: TV {
         /// コネクションからデータを受信
         self.connection?.receive(minimumIncompleteLength: 0, maximumLength: Int(UInt32.max)) { [weak self] (data, _, _, error) in
             if let data = data {
-                let text = String(data: data, encoding: .utf8)!
+                var text = String(data: data, encoding: .utf8)!
                 // print("Recieve:" + text)
                 if text.hasPrefix("Login:") || text.contains("Password:") || text.hasPrefix("\r") {
                     self?.receive(recvfunc: recvfunc)
@@ -114,6 +114,9 @@ class SharpTV: TV {
                     print("Connection Closed.")
                 }
                 if recvfunc != nil {
+                    if let range = text.range(of: "\r") {
+                        text.replaceSubrange(range, with: "")
+                    }
                     recvfunc!(text)
                 }
             } else {
