@@ -98,24 +98,31 @@ class SharpTV: TV {
         })
     }
 
-    func receive(recvfunc: @escaping (String) -> Void) {
+    func receive(recvfunc: ((String) -> Void )?) {
         /// コネクションからデータを受信
         self.connection?.receive(minimumIncompleteLength: 0, maximumLength: Int(UInt32.max)) { [weak self] (data, _, _, error) in
             if let data = data {
                 let text = String(data: data, encoding: .utf8)!
                 // print("Recieve:" + text)
-                if text.hasPrefix("Login:") || text.hasPrefix("Password:"){
+                if text.hasPrefix("Login:") || text.contains("Password:") || text.hasPrefix("\r") {
                     self?.receive(recvfunc: recvfunc)
                     return
                 }
-                recvfunc(text)
+                if self?.connection != nil {
+                    self?.connection?.cancel()
+                    self?.connection = nil
+                    print("Connection Closed.")
+                }
+                if recvfunc != nil {
+                    recvfunc!(text)
+                }
             } else {
                 NSLog("\(#function), Received data is nil")
-            }
-            if self?.connection != nil {
-                self?.connection?.cancel()
-                self?.connection = nil
-                print("Connection Closed.")
+                if self?.connection != nil {
+                    self?.connection?.cancel()
+                    self?.connection = nil
+                    print("Connection Closed.")
+                }
             }
         }
     }
