@@ -104,6 +104,10 @@ class SharpTV: TV {
             if let data = data {
                 let text = String(data: data, encoding: .utf8)!
                 // print("Recieve:" + text)
+                if text.hasPrefix("Login:") || text.hasPrefix("Password:"){
+                    self?.receive(recvfunc: recvfunc)
+                    return
+                }
                 recvfunc(text)
             } else {
                 NSLog("\(#function), Received data is nil")
