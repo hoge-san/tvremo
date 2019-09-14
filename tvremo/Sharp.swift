@@ -105,6 +105,33 @@ class SharpTV: TV {
         }
     }
 
+//    func receive(recvfunc: ((String) -> Void )?) {
+//        /// コネクションからデータを受信
+//        self.connection?.receive(minimumIncompleteLength: 0, maximumLength: Int(UInt32.max)) { [weak self] (data, _, _, error) in
+//            if let data = data {
+//                if recvfunc == nil {
+//                    self?.disconnect()
+//                    return
+//                }
+//                var text = String(data: data, encoding: .utf8)!
+//                print("Recieve:" + text)
+//                if text.hasPrefix("Login:") || text.contains("Password:") || text.hasPrefix("\r") {
+//                    self?.receive(recvfunc: recvfunc)
+//                    return
+//                }
+//                self?.disconnect()
+//
+//                if let range = text.range(of: "\r") {
+//                    text.replaceSubrange(range, with: "")
+//                }
+//                recvfunc!(text)
+//            } else {
+//                NSLog("\(#function), Received data is nil")
+//                self?.disconnect()
+//            }
+//        }
+//    }
+
     func receive(recvfunc: ((String) -> Void )?) {
         /// コネクションからデータを受信
         self.connection?.receive(minimumIncompleteLength: 0, maximumLength: Int(UInt32.max)) { [weak self] (data, _, _, error) in
@@ -114,17 +141,32 @@ class SharpTV: TV {
                     return
                 }
                 var text = String(data: data, encoding: .utf8)!
-                print("Recieve:" + text)
-                if text.hasPrefix("Login:") || text.contains("Password:") || text.hasPrefix("\r") {
-                    self?.receive(recvfunc: recvfunc)
-                    return
+                //print("---------------")
+                //print("Recieve:" + text)
+                if text.contains("Login:") || text.contains("Password:") {
+                    //print("text.count = " + String(text.count))
+                    //textに「Password:」など11文字以上が格納されていたら「:」で分割して配列へ入れる
+                    if text.count > 10{
+                        let strArray = text.split{$0 == ":"}.map(String.init)
+                        var count_i:Int = Int(strArray.count)
+                        count_i = count_i - 1
+                        //配列の最後がボリューム値だと推定しtextに書き込む
+                        text = strArray[count_i]
+                    }else{
+                        self?.receive(recvfunc: recvfunc)
+                        return
+                    }
                 }
                 self?.disconnect()
-
-                if let range = text.range(of: "\r") {
-                    text.replaceSubrange(range, with: "")
+                //textに改行コードと空白が含まれていたら削除する
+                if Int(text) == nil {
+                    if text.range(of: "\r") != nil {
+                        text = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
                 }
-                recvfunc!(text)
+                if text != ""{
+                    recvfunc!(text)
+                }
             } else {
                 NSLog("\(#function), Received data is nil")
                 self?.disconnect()

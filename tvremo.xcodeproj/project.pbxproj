@@ -8,10 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		C537BD45231E93020075D7CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537BD44231E93020075D7CC /* AppDelegate.swift */; };
-		C537BD47231E93020075D7CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537BD46231E93020075D7CC /* ViewController.swift */; };
 		C537BD4A231E93020075D7CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C537BD48231E93020075D7CC /* Main.storyboard */; };
 		C537BD4C231E93040075D7CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C537BD4B231E93040075D7CC /* Assets.xcassets */; };
 		C537BD4F231E93040075D7CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C537BD4D231E93040075D7CC /* LaunchScreen.storyboard */; };
+		C54217EC232A34E700CD8DB7 /* Panasonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54217EB232A34E700CD8DB7 /* Panasonic.swift */; };
+		C57EAAFC232727FE009D13B9 /* ssdp.c in Sources */ = {isa = PBXBuildFile; fileRef = C57EAAFB232727FE009D13B9 /* ssdp.c */; };
+		C57EAAFE23275A2F009D13B9 /* SSDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57EAAFD23275A2F009D13B9 /* SSDP.swift */; };
+		C57EAB0023275A71009D13B9 /* DeviceSSDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57EAAFF23275A71009D13B9 /* DeviceSSDP.swift */; };
+		C57EAB0223275AD5009D13B9 /* ScanSSDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57EAB0123275AD5009D13B9 /* ScanSSDP.swift */; };
+		C57EAB0423275C4E009D13B9 /* MyNetworkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57EAB0323275C4E009D13B9 /* MyNetworkInfo.swift */; };
+		C5A98DE4232B0768004B8501 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A98DE3232B0768004B8501 /* Device.swift */; };
+		C5A98DE6232B4E5A004B8501 /* SelectDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A98DE5232B4E5A004B8501 /* SelectDevice.swift */; };
+		C5A98DE8232B83B2004B8501 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A98DE7232B83B2004B8501 /* DeviceManager.swift */; };
+		C5A98DEA232BAE7F004B8501 /* SelectDeviceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A98DE9232BAE7F004B8501 /* SelectDeviceDetail.swift */; };
+		C5A98DEC232BE277004B8501 /* TVremoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A98DEB232BE277004B8501 /* TVremoViewController.swift */; };
+		C5A98DEE232BF6E3004B8501 /* ChangeDeviceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A98DED232BF6E3004B8501 /* ChangeDeviceDetail.swift */; };
 		C5B582E12324ED9300FF518B /* Toshiba.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B582E02324ED9300FF518B /* Toshiba.swift */; };
 		C5B582E323250B3D00FF518B /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B582E223250B3D00FF518B /* TV.swift */; };
 		C5B582E523261E4300FF518B /* Sharp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B582E423261E4300FF518B /* Sharp.swift */; };
@@ -20,11 +31,24 @@
 /* Begin PBXFileReference section */
 		C537BD41231E93020075D7CC /* tvremo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvremo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C537BD44231E93020075D7CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C537BD46231E93020075D7CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C537BD49231E93020075D7CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C537BD4B231E93040075D7CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C537BD4E231E93040075D7CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C537BD50231E93040075D7CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C54217EB232A34E700CD8DB7 /* Panasonic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panasonic.swift; sourceTree = "<group>"; };
+		C57EAAF9232727FE009D13B9 /* tvremo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tvremo-Bridging-Header.h"; sourceTree = "<group>"; };
+		C57EAAFA232727FE009D13B9 /* ssdp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssdp.h; sourceTree = "<group>"; };
+		C57EAAFB232727FE009D13B9 /* ssdp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ssdp.c; sourceTree = "<group>"; };
+		C57EAAFD23275A2F009D13B9 /* SSDP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDP.swift; sourceTree = "<group>"; };
+		C57EAAFF23275A71009D13B9 /* DeviceSSDP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSSDP.swift; sourceTree = "<group>"; };
+		C57EAB0123275AD5009D13B9 /* ScanSSDP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSSDP.swift; sourceTree = "<group>"; };
+		C57EAB0323275C4E009D13B9 /* MyNetworkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNetworkInfo.swift; sourceTree = "<group>"; };
+		C5A98DE3232B0768004B8501 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		C5A98DE5232B4E5A004B8501 /* SelectDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDevice.swift; sourceTree = "<group>"; };
+		C5A98DE7232B83B2004B8501 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		C5A98DE9232BAE7F004B8501 /* SelectDeviceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceDetail.swift; sourceTree = "<group>"; };
+		C5A98DEB232BE277004B8501 /* TVremoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVremoViewController.swift; sourceTree = "<group>"; };
+		C5A98DED232BF6E3004B8501 /* ChangeDeviceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDeviceDetail.swift; sourceTree = "<group>"; };
 		C5B582E02324ED9300FF518B /* Toshiba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toshiba.swift; sourceTree = "<group>"; };
 		C5B582E223250B3D00FF518B /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		C5B582E423261E4300FF518B /* Sharp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sharp.swift; sourceTree = "<group>"; };
@@ -61,14 +85,27 @@
 			isa = PBXGroup;
 			children = (
 				C537BD44231E93020075D7CC /* AppDelegate.swift */,
-				C537BD46231E93020075D7CC /* ViewController.swift */,
+				C5A98DEB232BE277004B8501 /* TVremoViewController.swift */,
+				C5A98DE5232B4E5A004B8501 /* SelectDevice.swift */,
+				C5A98DE9232BAE7F004B8501 /* SelectDeviceDetail.swift */,
+				C5A98DED232BF6E3004B8501 /* ChangeDeviceDetail.swift */,
 				C5B582E02324ED9300FF518B /* Toshiba.swift */,
 				C5B582E423261E4300FF518B /* Sharp.swift */,
+				C54217EB232A34E700CD8DB7 /* Panasonic.swift */,
 				C5B582E223250B3D00FF518B /* TV.swift */,
+				C5A98DE3232B0768004B8501 /* Device.swift */,
+				C5A98DE7232B83B2004B8501 /* DeviceManager.swift */,
 				C537BD48231E93020075D7CC /* Main.storyboard */,
 				C537BD4B231E93040075D7CC /* Assets.xcassets */,
 				C537BD4D231E93040075D7CC /* LaunchScreen.storyboard */,
 				C537BD50231E93040075D7CC /* Info.plist */,
+				C57EAAFD23275A2F009D13B9 /* SSDP.swift */,
+				C57EAB0123275AD5009D13B9 /* ScanSSDP.swift */,
+				C57EAAFF23275A71009D13B9 /* DeviceSSDP.swift */,
+				C57EAAFA232727FE009D13B9 /* ssdp.h */,
+				C57EAAFB232727FE009D13B9 /* ssdp.c */,
+				C57EAAF9232727FE009D13B9 /* tvremo-Bridging-Header.h */,
+				C57EAB0323275C4E009D13B9 /* MyNetworkInfo.swift */,
 			);
 			path = tvremo;
 			sourceTree = "<group>";
@@ -104,6 +141,7 @@
 				TargetAttributes = {
 					C537BD40231E93020075D7CC = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -143,10 +181,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C54217EC232A34E700CD8DB7 /* Panasonic.swift in Sources */,
+				C5A98DEC232BE277004B8501 /* TVremoViewController.swift in Sources */,
+				C57EAB0423275C4E009D13B9 /* MyNetworkInfo.swift in Sources */,
+				C57EAB0223275AD5009D13B9 /* ScanSSDP.swift in Sources */,
+				C5A98DE4232B0768004B8501 /* Device.swift in Sources */,
 				C5B582E12324ED9300FF518B /* Toshiba.swift in Sources */,
+				C57EAAFC232727FE009D13B9 /* ssdp.c in Sources */,
+				C57EAAFE23275A2F009D13B9 /* SSDP.swift in Sources */,
+				C5A98DE8232B83B2004B8501 /* DeviceManager.swift in Sources */,
+				C5A98DE6232B4E5A004B8501 /* SelectDevice.swift in Sources */,
 				C5B582E523261E4300FF518B /* Sharp.swift in Sources */,
+				C5A98DEA232BAE7F004B8501 /* SelectDeviceDetail.swift in Sources */,
+				C5A98DEE232BF6E3004B8501 /* ChangeDeviceDetail.swift in Sources */,
 				C5B582E323250B3D00FF518B /* TV.swift in Sources */,
-				C537BD47231E93020075D7CC /* ViewController.swift in Sources */,
+				C57EAB0023275A71009D13B9 /* DeviceSSDP.swift in Sources */,
 				C537BD45231E93020075D7CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = tvremo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -301,6 +351,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.tvremo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "tvremo/tvremo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -310,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = tvremo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,6 +371,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.tvremo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "tvremo/tvremo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
