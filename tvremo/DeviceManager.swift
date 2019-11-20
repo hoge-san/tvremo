@@ -6,7 +6,16 @@ import Foundation
 
 class DeviceManager {
     static var shared = DeviceManager()
-    static var devices: Array<Device> = []
+    private static var devices: Array<Device> = []
+
+    static func getDevice(index: Int) -> Device? {
+        guard index >= 0 && index < devices.count else { return nil }
+        return devices[index]
+    }
+
+    static func getDeviceCount() -> Int {
+        return devices.count
+    }
 
     static func load() {
         if let storedData = UserDefaults.standard.object(forKey: "devices") as? Data {

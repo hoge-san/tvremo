@@ -32,11 +32,7 @@ class TVremoViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         tvPickerView.dataSource = self
 
         DeviceManager.load()
-        if DeviceManager.devices.count == 0 {
-            // self.tabBarController?.selectedIndex = 1
-        } else {
-            self.selectedDevice = DeviceManager.devices[0]
-        }
+        self.selectedDevice = DeviceManager.getDevice(index: 0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,16 +47,14 @@ class TVremoViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return DeviceManager.devices.count
+        return DeviceManager.getDeviceCount()
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return DeviceManager.devices[row].name
+        return DeviceManager.getDevice(index: row)?.name
     }
-
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedDevice = DeviceManager.devices[row]
+        self.selectedDevice = DeviceManager.getDevice(index: row)
     }
-    
 }

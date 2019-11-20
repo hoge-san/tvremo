@@ -137,7 +137,7 @@ class SelectDevice: UIViewController {
 extension SelectDevice: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.isEqual(registerDeviceTableView) {
-            return DeviceManager.devices.count
+            return DeviceManager.getDeviceCount()
         }
         return self.devices.count
     }
@@ -145,8 +145,9 @@ extension SelectDevice: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.isEqual(registerDeviceTableView) {
             let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "registerDevice", for: indexPath)
-            (cell.viewWithTag(1) as? UILabel)?.text = DeviceManager.devices[indexPath.row].name
-            (cell.viewWithTag(2) as? UILabel)?.text = DeviceManager.devices[indexPath.row].vender.rawValue
+            let device = DeviceManager.getDevice(index: indexPath.row)
+            (cell.viewWithTag(1) as? UILabel)?.text = device?.name
+            (cell.viewWithTag(2) as? UILabel)?.text = device?.vender.rawValue
             return cell
         }
 
@@ -160,7 +161,7 @@ extension SelectDevice: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEqual(registerDeviceTableView) {
-            selectedDevice = DeviceManager.devices[indexPath.row]
+            selectedDevice = DeviceManager.getDevice(index: indexPath.row)
             performSegue(withIdentifier: "toChangeDeviceDetail", sender: nil)
         } else {
             selectedDevice = self.devices[indexPath.row]
