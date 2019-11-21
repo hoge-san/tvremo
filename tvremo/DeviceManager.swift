@@ -17,6 +17,15 @@ class DeviceManager {
         return devices.count
     }
 
+    static func getDevice(uuid: String) -> Device? {
+        for d in devices {
+            if d.uuid == uuid {
+                return d
+            }
+        }
+        return nil
+    }
+
     static func load() {
         if let storedData = UserDefaults.standard.object(forKey: "devices") as? Data {
             if let unarchivedObject = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(storedData) as? [Device] {

@@ -4,6 +4,7 @@
 
 
 import UIKit
+import Intents
 
 class TVremoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     private var selectedDevice: Device?
@@ -17,13 +18,51 @@ class TVremoViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet private weak var channelUpButton: UIButton!
     @IBOutlet private weak var recordingListButton: UIButton!
 
-    @IBAction func powerButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.power() }
-    @IBAction func volDownButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.volDown() }
+    @IBAction func powerButtonAction(_ sender: Any)
+    { self.prepareIntent(control: .power) ;self.selectedDevice?.tvctl?.power() }
+    @IBAction func volDownButtonAction(_ sender: Any)
+    { self.prepareIntent(control: .volumeDown) ; self.selectedDevice?.tvctl?.volDown() }
     @IBAction func volUpButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.volUp() }
-    @IBAction func muteButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.mute() }
+    @IBAction func muteButtonAction(_ sender: Any)
+    { self.prepareIntent(control: .mute) ;self.selectedDevice?.tvctl?.mute() }
     @IBAction func channelDownButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.channelDown() }
     @IBAction func channelUpButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.channelUp() }
     @IBAction func recordingListButtonAction(_ sender: Any) { self.selectedDevice?.tvctl?.recordingList() }
+
+    enum TVcontrol {
+        case volumeDown
+        case power
+        case mute
+    }
+
+    private func prepareIntent(control: TVcontrol) {
+        var intent: INIntent
+        switch control {
+        case .volumeDown:
+            let intent0 = VolumeDownIntent()
+            intent0.device = selectedDevice?.name
+            intent0.uuid = selectedDevice?.uuid
+            intent = intent0
+        case .power:
+            let intent0 = PowerIntent()
+            intent0.device = selectedDevice?.name
+            intent0.uuid = selectedDevice?.uuid
+            intent = intent0
+        case .mute:
+            let intent0 = MuteIntent()
+            intent0.device = selectedDevice?.name
+            intent0.uuid = selectedDevice?.uuid
+            intent = intent0
+            
+        }
+
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate { error in
+            if let error = error as NSError? {
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

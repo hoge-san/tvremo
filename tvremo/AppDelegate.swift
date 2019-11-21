@@ -40,6 +40,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if userActivity.activityType == String(describing: VolumeDownIntent.self) {
+            guard let intent = userActivity.interaction?.intent as? VolumeDownIntent,
+                let uuid = intent.uuid else {
+                    return false
+            }
+            DeviceManager.load()
+            DeviceManager.getDevice(uuid: uuid)?.tvctl?.volDown()
+            return false
+        }
+
+        if userActivity.activityType == String(describing: PowerIntent.self) {
+            guard let intent = userActivity.interaction?.intent as? PowerIntent,
+                let uuid = intent.uuid else {
+                    return false
+            }
+            DeviceManager.load()
+            DeviceManager.getDevice(uuid: uuid)?.tvctl?.power()
+            return true
+        }
+
+        if userActivity.activityType == String(describing: MuteIntent.self) {
+            guard let intent = userActivity.interaction?.intent as? MuteIntent,
+                let uuid = intent.uuid else {
+                    return false
+            }
+            DeviceManager.load()
+            DeviceManager.getDevice(uuid: uuid)?.tvctl?.mute()
+            return true
+        }
+        
+        return false
+    }
 
 }
 

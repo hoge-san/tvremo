@@ -26,6 +26,7 @@
 		C5B582E12324ED9300FF518B /* Toshiba.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B582E02324ED9300FF518B /* Toshiba.swift */; };
 		C5B582E323250B3D00FF518B /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B582E223250B3D00FF518B /* TV.swift */; };
 		C5B582E523261E4300FF518B /* Sharp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B582E423261E4300FF518B /* Sharp.swift */; };
+		C5F82F6623857F2E00750E00 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C5F82F6523857F2E00750E00 /* Intents.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		C5B582E02324ED9300FF518B /* Toshiba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toshiba.swift; sourceTree = "<group>"; };
 		C5B582E223250B3D00FF518B /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		C5B582E423261E4300FF518B /* Sharp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sharp.swift; sourceTree = "<group>"; };
+		C5F82F6523857F2E00750E00 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				C57EAAFB232727FE009D13B9 /* ssdp.c */,
 				C57EAAF9232727FE009D13B9 /* tvremo-Bridging-Header.h */,
 				C57EAB0323275C4E009D13B9 /* MyNetworkInfo.swift */,
+				C5F82F6523857F2E00750E00 /* Intents.intentdefinition */,
 			);
 			path = tvremo;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				C54217EC232A34E700CD8DB7 /* Panasonic.swift in Sources */,
 				C5A98DEC232BE277004B8501 /* TVremoViewController.swift in Sources */,
+				C5F82F6623857F2E00750E00 /* Intents.intentdefinition in Sources */,
 				C57EAB0423275C4E009D13B9 /* MyNetworkInfo.swift in Sources */,
 				C57EAB0223275AD5009D13B9 /* ScanSSDP.swift in Sources */,
 				C5A98DE4232B0768004B8501 /* Device.swift in Sources */,
@@ -364,6 +368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = tvremo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
